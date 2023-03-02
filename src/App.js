@@ -1,11 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import { HelloWorld } from './components/hello-world';
+
+const galacticVariable = {
+  ultimateTruth: 'Meg Myers'
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        < HelloWorld ultimateTruth={galacticVariable.ultimateTruth} />
         <p>
           Having to start over is no fun.  But it's better than giving up
         </p>
