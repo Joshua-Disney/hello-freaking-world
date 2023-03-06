@@ -5,26 +5,43 @@ export const PokeApi = () => {
     const [pokeInfo, setPokeInfo] = useState({})
     const [movesList, setMovesList] = useState([])
 
+    // const getPokemon = () => async () => {
+    //     try {
+    //         const result = await fetch(
+    //             'https://pokeapi.co/api/v2/pokemon/pidgeotto'
+    //         )
+    //         console.log('result: ', result)
+    //     } catch(error) {
+    //         console.log('Error: ', error)
+    //     }
+    // }
+
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/pidgeotto')
-       .then(response => setPokeInfo(response.data))
+        fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
+        .then(response => response.json())
+        .then(data => setPokeInfo(data))
+       .then(console.log('pokeInfo: ', pokeInfo))
     }, [])
 
-    // useEffect(() => {
-    //     for (let i = 0; i < 4; i++) {
-    //         setMovesList([...movesList, pokeInfo.moves[i].move.name])
-    //     }
-    // }, pokeInfo)
+    useEffect(() => {
+        if(pokeInfo.name && movesList.length !== 4) {
+            for (let i = 0; i < 4; i++) {
+                console.log('logging move: ', pokeInfo.moves[i].move.name) /*This is working!*/
+                setMovesList([...movesList, pokeInfo.moves[i].move.name]) /*Why ISN'T this working?!?!?!?!?!?!?!?*/
+            }
+        }
+    }, [pokeInfo])
 
-   console.log(pokeInfo)
+    console.log('logging pokeInfo: ', pokeInfo)
+    console.log('logging movesList: ', movesList)
 
    return(
     <div>
-        <p>This should display information about {pokeInfo ? pokeInfo.name : 'a pokemon'}</p>
-        {/* <p>{movesList[0]}</p>
-        <p>{movesList[1]}</p>
-        <p>{movesList[2]}</p>
-        <p>{movesList[3]}</p> */}
+        <p>This should display information about {pokeInfo.name ? pokeInfo.name : 'a pokemon'}</p>
+        {movesList[0] && <p>{movesList[0]}</p>}
+        {movesList[1] && <p>{movesList[1]}</p>}
+        {movesList[2] && <p>{movesList[2]}</p>}
+        {movesList[3] && <p>{movesList[3]}</p>}
     </div>
    )
 }
