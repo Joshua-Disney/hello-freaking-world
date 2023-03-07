@@ -6,22 +6,17 @@ export const PokeApi = () => {
     const [movesList, setMovesList] = useState([])
 
     const getPokemon = () => async () => {
-        try {
-            const result = await fetch(
-                'https://pokeapi.co/api/v2/pokemon/pidgeotto'
+            const result = await fetch('https://pokeapi.co/api/v2/pokemon/pidgeotto.json'
             )
             console.log('result: ', result)
-            const myJson = await result.json
+            const myJson = await result.json    
             console.log('myJson: ', myJson)
-        } catch(error) {
-            console.log('Error: ', error)
-        }
     }
 
     // useEffect(() => {
     //     fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
     //     .then(response => response.json())
-    //     .then(data => setPokeInfo(data))
+    //     .then(data => setPokeInfo(data))     
     //     .then(setMovesList(() => {
     //         if(pokeInfo.name) {
     //             for (let i = 0; i < 4; i++) {
