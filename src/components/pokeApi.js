@@ -36,6 +36,7 @@ export const PokeApi = () => {
     //         }
     //     }
     // }, [pokeInfo])
+    getPokemon()
 
     console.log('logging pokeInfo: ', pokeInfo)
     console.log('logging movesList: ', movesList)
@@ -47,7 +48,6 @@ export const PokeApi = () => {
         {movesList[1] && <p>{movesList[1]}</p>}
         {movesList[2] && <p>{movesList[2]}</p>}
         {movesList[3] && <p>{movesList[3]}</p>}
-        <button onClick={getPokemon} >Get pidgeotto</button>
     </div>
    )
 }
