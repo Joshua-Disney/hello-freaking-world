@@ -3,51 +3,21 @@ import React, { useState, useEffect } from 'react'
 export const PokeApi = () => {
 
     const [pokeInfo, setPokeInfo] = useState({})
-    const [movesList, setMovesList] = useState([])
 
-    const getPokemon = () => async () => {
-            const result = await fetch('https://pokeapi.co/api/v2/pokemon/pidgeotto.json'
-            )
-            console.log('result: ', result)
-            const myJson = await result.json    
-            console.log('myJson: ', myJson)
-    }
-
-    // useEffect(() => {
-    //     fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-    //     .then(response => response.json())
-    //     .then(data => setPokeInfo(data))     
-    //     .then(setMovesList(() => {
-    //         if(pokeInfo.name) {
-    //             for (let i = 0; i < 4; i++) {
-    //                 console.log('logging move: ', pokeInfo.moves[i].move.name) /*This is working!*/
-    //                 setMovesList([...movesList, pokeInfo.moves[i].move.name]) /*Why ISN'T this working?!?!?!?!?!?!?!?*/
-    //             }
-    //         }
-    //     }))
-    //    .then(console.log('pokeInfo: ', pokeInfo))
-    // }, [])
-
-    // useEffect(() => {
-    //     if(pokeInfo.name && movesList.length !== 4) {
-    //         for (let i = 0; i < 4; i++) {
-    //             console.log('logging move: ', pokeInfo.moves[i].move.name) /*This is working!*/
-    //             setMovesList([...movesList, pokeInfo.moves[i].move.name]) /*Why ISN'T this working?!?!?!?!?!?!?!?*/
-    //         }
-    //     }
-    // }, [pokeInfo])
-    getPokemon()
-
-    console.log('logging pokeInfo: ', pokeInfo)
-    console.log('logging movesList: ', movesList)
+    useEffect(() => {
+        const getPokemon = async () => {
+            const result = await fetch('https://pokeapi.co/api/v2/pokemon/pidgeotto')
+            const myJson = await result.json()   
+            setPokeInfo(myJson)
+        }
+        
+        getPokemon()
+    }, [])
 
    return(
     <div>
         <p>This should display information about {pokeInfo.name ? pokeInfo.name : 'a pokemon'}</p>
-        {movesList[0] && <p>{movesList[0]}</p>}
-        {movesList[1] && <p>{movesList[1]}</p>}
-        {movesList[2] && <p>{movesList[2]}</p>}
-        {movesList[3] && <p>{movesList[3]}</p>}
+        {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <p>....Loading</p>}
     </div>
    )
 }
