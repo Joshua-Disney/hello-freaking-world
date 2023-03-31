@@ -2,52 +2,33 @@ import React, { useState, useEffect } from 'react'
 
 export const PokeApi = () => {
 
+    const [pokeName, setPokeName] = useState('')
     const [pokeInfo, setPokeInfo] = useState({})
-    const [movesList, setMovesList] = useState([])
 
-    const getPokemon = () => async () => {
-            const result = await fetch('https://pokeapi.co/api/v2/pokemon/pidgeotto.json'
-            )
-            console.log('result: ', result)
-            const myJson = await result.json    
-            console.log('myJson: ', myJson)
+    const getPokemon = async (name) => {
+        const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        const myJson = await result.json()   
+        setPokeInfo(myJson)
     }
-
-    // useEffect(() => {
-    //     fetch('https://pokeapi.co/api/v2/pokemon/pikachu')
-    //     .then(response => response.json())
-    //     .then(data => setPokeInfo(data))     
-    //     .then(setMovesList(() => {
-    //         if(pokeInfo.name) {
-    //             for (let i = 0; i < 4; i++) {
-    //                 console.log('logging move: ', pokeInfo.moves[i].move.name) /*This is working!*/
-    //                 setMovesList([...movesList, pokeInfo.moves[i].move.name]) /*Why ISN'T this working?!?!?!?!?!?!?!?*/
-    //             }
-    //         }
-    //     }))
-    //    .then(console.log('pokeInfo: ', pokeInfo))
-    // }, [])
-
-    // useEffect(() => {
-    //     if(pokeInfo.name && movesList.length !== 4) {
-    //         for (let i = 0; i < 4; i++) {
-    //             console.log('logging move: ', pokeInfo.moves[i].move.name) /*This is working!*/
-    //             setMovesList([...movesList, pokeInfo.moves[i].move.name]) /*Why ISN'T this working?!?!?!?!?!?!?!?*/
-    //         }
-    //     }
-    // }, [pokeInfo])
-    getPokemon()
-
-    console.log('logging pokeInfo: ', pokeInfo)
-    console.log('logging movesList: ', movesList)
 
    return(
     <div>
-        <p>This should display information about {pokeInfo.name ? pokeInfo.name : 'a pokemon'}</p>
-        {movesList[0] && <p>{movesList[0]}</p>}
-        {movesList[1] && <p>{movesList[1]}</p>}
-        {movesList[2] && <p>{movesList[2]}</p>}
-        {movesList[3] && <p>{movesList[3]}</p>}
+        <form onSubmit={(e) => {
+            e.preventDefault()
+            getPokemon(pokeName)}}>
+            <input 
+                type='text' 
+                name='pokeName' 
+                id='pokeName'
+                placeholder='...type a Pokemon name' 
+                value={pokeName} 
+                onChange={(e) => setPokeName(e.target.value)} 
+            />
+        </form>
+        <section>
+            <h2>This should display information about {pokeName ? pokeName : 'a pokemon'}</h2>
+            {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <p>....Loading</p>}
+        </section>
     </div>
    )
 }
