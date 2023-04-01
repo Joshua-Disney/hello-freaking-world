@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 export const PokeApi = () => {
 
     const [pokeName, setPokeName] = useState('')
     const [pokeInfo, setPokeInfo] = useState({})
+    const [pokeImg, setPokeImg] = useState('')
 
     const getPokemon = async (name) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
         const myJson = await result.json()   
         setPokeInfo(myJson)
+        setPokeImg(myJson.sprites.front_default)
     }
 
    return(
@@ -28,6 +30,7 @@ export const PokeApi = () => {
         <section>
             <h2>This should display information about {pokeName ? pokeName : 'a pokemon'}</h2>
             {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <p>....Loading</p>}
+            <img src={pokeImg} />
         </section>
     </div>
    )
