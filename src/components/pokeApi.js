@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../App.css'
 
 export const PokeApi = () => {
 
@@ -29,8 +30,9 @@ export const PokeApi = () => {
         </form>
         <section>
             <h2>This should display information about {pokeName ? pokeName : 'a pokemon'}</h2>
+            {pokeName ? <p>Some of {pokeName}'s moves are</p> : <></>}
             {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <p>....Loading</p>}
-            <img src={pokeImg} />
+            {pokeImg ? <img id='pokeId' src={pokeImg} /> : <></>}
         </section>
     </div>
    )
