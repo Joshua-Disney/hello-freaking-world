@@ -13,9 +13,9 @@ function App() {
       <header className="App-header">
         {/* < HelloWorld ultimateTruth={galacticVariable.ultimateTruth} /> */}
         < PokeApi />
-        <p>
+        {/* <p>
           Having to start over is no fun.  But it's better than giving up
-        </p>
+        </p> */}
         {/* <a
           className="App-link"
           href="https://reactjs.org"
