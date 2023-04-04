@@ -37,3 +37,5 @@ export const PokeApi = () => {
     </div>
    )
 }
+
+https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0
