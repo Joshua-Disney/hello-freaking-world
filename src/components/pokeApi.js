@@ -6,6 +6,8 @@ export const PokeApi = () => {
     const [pokeName, setPokeName] = useState('')
     const [pokeInfo, setPokeInfo] = useState({})
     const [pokeImg, setPokeImg] = useState('')
+    const [pokeList, setPokeList] = useState([])
+    const [pokeNames, setPokeNames] = useState([])
 
     const getPokemon = async (name) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -14,11 +16,25 @@ export const PokeApi = () => {
         setPokeImg(myJson.sprites.front_default)
     }
 
+    const getPokemonNames = async () => {
+        const result = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0')
+        const pokeJson = await result.json()
+        setPokeInfo(pokeJson)
+        console.log('pokeInfo: ', pokeInfo)
+        setPokeList(pokeInfo.results)
+        console.log('pokeList: ', pokeList)
+        setPokeNames(pokeList.map((poke) => {
+            return poke.name
+        }))
+        console.log('pokeNames: ', pokeNames)
+    }
+
    return(
     <div>
         <form onSubmit={(e) => {
             e.preventDefault()
-            getPokemon(pokeName)}}>
+            getPokemonNames()}}>
+            {/* getPokemon(pokeName)}}> */}
             <input 
                 type='text' 
                 name='pokeName' 
@@ -37,5 +53,3 @@ export const PokeApi = () => {
     </div>
    )
 }
-
-// Comment for Github
