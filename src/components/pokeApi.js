@@ -40,3 +40,5 @@ export const PokeApi = () => {
     </div>
    )
 }
+
+// Spent half an hour searching through the pokeAPI docs to find consistent flavor_text link
