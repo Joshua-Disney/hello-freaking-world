@@ -8,6 +8,7 @@ export const PokeApi = () => {
     const [pokeName, setPokeName] = useState('')
     const [pokeInfo, setPokeInfo] = useState({})
     const [pokeImg, setPokeImg] = useState('')
+    const [pokeFlavorText, setPokeFlavorText] = useState('')
 
     const getPokemon = async (name) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -15,6 +16,13 @@ export const PokeApi = () => {
         setPokeInfo(myJson)
         setPokeImg(myJson.sprites.front_default)
         console.log(PokeNames)
+    }
+
+    const getFlavorText = async (id) => {
+        const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
+        const myJson = await result.json()
+        setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
+        console.log('pokeFlavorText: ', pokeFlavorText)
     }
 
    return(
@@ -36,6 +44,10 @@ export const PokeApi = () => {
             {pokeName ? <p>Some of {pokeName}'s moves are</p> : <></>}
             {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <p>....Loading</p>}
             {pokeImg ? <img id='pokeId' src={pokeImg} /> : <></>}
+        </section>
+        <section>
+            {pokeInfo ? <button onClick={getFlavorText}>For more information about {pokeName} click here!</button> : <></>}
+            {pokeFlavorText ? <p>{pokeFlavorText}</p> : <></>}
         </section>
     </div>
    )
