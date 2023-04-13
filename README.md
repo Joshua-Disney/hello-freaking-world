@@ -77,3 +77,7 @@ display image of pokemon
 select pokemon name from display list on input
 
 create an accordian div that shows the Pokemon's description
+
+handle changes in the input after pokeInfo is initially loaded
+
+make button visible only when call to pokeAPI has been made
