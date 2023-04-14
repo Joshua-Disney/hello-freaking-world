@@ -11,7 +11,7 @@ export const PokeApi = () => {
     const [pokeFlavorText, setPokeFlavorText] = useState('')
 
     const getPokemon = async (name) => {
-        const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         const myJson = await result.json()   
         setPokeInfo(myJson)
         setPokeImg(myJson.sprites.front_default)
@@ -27,30 +27,30 @@ export const PokeApi = () => {
 
    return(
     <div>
+        {pokeInfo.name ? <></> : <h1>Welcome to Poké Info</h1>}
         <form onSubmit={(e) => {
             e.preventDefault()
+            setPokeFlavorText('')
             getPokemon(pokeName)}}>
             <input 
                 type='text' 
                 name='pokeName' 
                 id='pokeName'
-                placeholder='...type a Pokemon name' 
+                placeholder='...type a Pokémon name' 
                 value={pokeName} 
                 onChange={(e) => setPokeName(e.target.value)} 
             />
         </form>
         <section>
-            <h2>This should display information about {pokeName ? pokeName : 'a pokemon'}</h2>
-            {pokeName ? <p>Some of {pokeName}'s moves are</p> : <></>}
-            {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <p>....Loading</p>}
-            {pokeImg ? <img id='pokeId' src={pokeImg} /> : <></>}
+            <h2>{pokeInfo.name ? pokeInfo.name : ''}</h2>
+            {pokeInfo.name ? <p>Some moves {pokeInfo.name}s can learn are</p> : <></>}
+            {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <></>}
+            {pokeInfo.name ? <img id='pokeId' src={pokeImg} /> : <></>}
         </section>
         <section>
-            {pokeInfo ? <button onClick={getFlavorText}>For more information about {pokeName} click here!</button> : <></>}
-            {pokeFlavorText ? <p>{pokeFlavorText}</p> : <></>}
+            {pokeInfo.name ? <button onClick={getFlavorText}>For more information about {pokeInfo.name} click here!</button> : <></>}
+            {pokeInfo.name && pokeFlavorText ? <p>{pokeFlavorText}</p> : <></>}
         </section>
     </div>
    )
 }
-
-// Spent half an hour searching through the pokeAPI docs to find consistent flavor_text link

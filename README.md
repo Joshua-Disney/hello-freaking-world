@@ -72,12 +72,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## TODO LIST 
 
-display image of pokemon
+[x] display image of pokemon
 
-select pokemon name from display list on input
+[] select pokemon name from suggestion list on input
 
-create an accordian div that shows the Pokemon's description
+[] create an accordian div that shows the Pokemon's description
 
-handle changes in the input after pokeInfo is initially loaded
+[x] handle changes in the input after pokeInfo is initially loaded
 
-make button visible only when call to pokeAPI has been made
+[x] make button visible only when call to pokeAPI has been made
