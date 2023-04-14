@@ -11,7 +11,7 @@ export const PokeApi = () => {
     const [pokeFlavorText, setPokeFlavorText] = useState('')
 
     const getPokemon = async (name) => {
-        const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         const myJson = await result.json()   
         setPokeInfo(myJson)
         setPokeImg(myJson.sprites.front_default)
@@ -27,7 +27,7 @@ export const PokeApi = () => {
 
    return(
     <div>
-        {pokeInfo.name ? <></> : <h1>Welcome to Poke Info</h1>}
+        {pokeInfo.name ? <></> : <h1>Welcome to Poké Info</h1>}
         <form onSubmit={(e) => {
             e.preventDefault()
             setPokeFlavorText('')
@@ -36,7 +36,7 @@ export const PokeApi = () => {
                 type='text' 
                 name='pokeName' 
                 id='pokeName'
-                placeholder='...type a Pokemon name' 
+                placeholder='...type a Pokémon name' 
                 value={pokeName} 
                 onChange={(e) => setPokeName(e.target.value)} 
             />
