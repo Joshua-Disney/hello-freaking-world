@@ -8,13 +8,26 @@ export const PokeApi = () => {
     const [pokeName, setPokeName] = useState('')
     const [pokeInfo, setPokeInfo] = useState({})
     const [pokeImg, setPokeImg] = useState('')
+    const [pokeMoves, setPokeMoves] = useState([])
     const [pokeFlavorText, setPokeFlavorText] = useState('')
+
+    const getFour = (arr) => {
+        const four = []
+        while (four.length < 4) {
+            const ind = Math.floor(Math.random() * arr.length)
+            if (/*ind not in four */thing) {
+                four.push(ind)
+            }
+        }
+        return four
+    }
 
     const getPokemon = async (name) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
         const myJson = await result.json()   
         setPokeInfo(myJson)
         setPokeImg(myJson.sprites.front_default)
+        setPokeMoves()
         console.log(PokeNames)
     }
 
