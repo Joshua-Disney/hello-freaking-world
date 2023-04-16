@@ -12,10 +12,11 @@ export const PokeApi = () => {
     const [pokeFlavorText, setPokeFlavorText] = useState('')
 
     const getFour = (arr) => {
+        console.log('arr: ', arr)
         const four = []
         while (four.length < 4) {
             const ind = Math.floor(Math.random() * arr.length)
-            if (/*ind not in four */thing) {
+            if (four.includes(ind) === false) {
                 four.push(ind)
             }
         }
@@ -27,7 +28,10 @@ export const PokeApi = () => {
         const myJson = await result.json()   
         setPokeInfo(myJson)
         setPokeImg(myJson.sprites.front_default)
-        setPokeMoves()
+        const four = getFour(myJson.moves)
+        console.log('four: ', four)
+        setPokeMoves(four.map(num => myJson.moves[num].move.name))
+        console.log('pokeMoves: ', pokeMoves)
         console.log(PokeNames)
     }
 
@@ -57,7 +61,7 @@ export const PokeApi = () => {
         <section>
             <h2>{pokeInfo.name ? pokeInfo.name : ''}</h2>
             {pokeInfo.name ? <p>Some moves {pokeInfo.name}s can learn are</p> : <></>}
-            {pokeInfo.moves ? pokeInfo.moves.slice(0, 4).map((move) => <p key={move.move.name}>{move.move.name}</p>) : <></>}
+            {pokeInfo.moves ? pokeMoves.map((move) => <p key={move}>{move}</p>) : <></>}
             {pokeInfo.name ? <img id='pokeId' src={pokeImg} /> : <></>}
         </section>
         <section>
