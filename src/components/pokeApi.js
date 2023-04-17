@@ -14,14 +14,18 @@ export const PokeApi = () => {
     const getFour = (arr) => {
         console.log('arr: ', arr)
         const four = []
-        while (four.length < 4) {
+        while (four.length < arr.length) {
             const ind = Math.floor(Math.random() * arr.length)
             if (four.includes(ind) === false) {
                 four.push(ind)
             }
+            if (four.length === 4) {
+                break
+            }
         }
         return four
     }
+    
 
     const getPokemon = async (name) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
@@ -39,7 +43,6 @@ export const PokeApi = () => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
         const myJson = await result.json()
         setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
-        console.log('pokeFlavorText: ', pokeFlavorText)
     }
 
    return(
