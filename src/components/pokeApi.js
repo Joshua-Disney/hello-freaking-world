@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../App.css'
 
-import { PokeNames } from './PokeNames'
+import { NamesDataList } from './namesDataList'
 
 export const PokeApi = () => {
 
@@ -33,10 +33,7 @@ export const PokeApi = () => {
         setPokeInfo(myJson)
         setPokeImg(myJson.sprites.front_default)
         const four = getFour(myJson.moves)
-        console.log('four: ', four)
         setPokeMoves(four.map(num => myJson.moves[num].move.name))
-        console.log('pokeMoves: ', pokeMoves)
-        console.log(PokeNames)
     }
 
     const getFlavorText = async (id) => {
@@ -58,8 +55,10 @@ export const PokeApi = () => {
                 id='pokeName'
                 placeholder='...type a Pokémon name' 
                 value={pokeName} 
+                list='pokeNames'
                 onChange={(e) => setPokeName(e.target.value)} 
             />
+            <NamesDataList />
         </form>
         <section>
             <h2>{pokeInfo.name ? pokeInfo.name : ''}</h2>
