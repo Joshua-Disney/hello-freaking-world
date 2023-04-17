@@ -58,7 +58,7 @@ export const PokeApi = () => {
                 list='pokeNames'
                 onChange={(e) => setPokeName(e.target.value)} 
             />
-            <NamesDataList />
+            <NamesDataList name={pokeName}/>
         </form>
         <section>
             <h2>{pokeInfo.name ? pokeInfo.name : ''}</h2>
