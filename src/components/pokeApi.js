@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../App.css'
 
-import { PokeNames } from './PokeNames'
+import { NamesDataList } from './namesDataList'
 
 export const PokeApi = () => {
 
@@ -14,14 +14,18 @@ export const PokeApi = () => {
     const getFour = (arr) => {
         console.log('arr: ', arr)
         const four = []
-        while (four.length < 4) {
+        while (four.length < arr.length) {
             const ind = Math.floor(Math.random() * arr.length)
             if (four.includes(ind) === false) {
                 four.push(ind)
             }
+            if (four.length === 4) {
+                break
+            }
         }
         return four
     }
+    
 
     const getPokemon = async (name) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
@@ -29,17 +33,13 @@ export const PokeApi = () => {
         setPokeInfo(myJson)
         setPokeImg(myJson.sprites.front_default)
         const four = getFour(myJson.moves)
-        console.log('four: ', four)
         setPokeMoves(four.map(num => myJson.moves[num].move.name))
-        console.log('pokeMoves: ', pokeMoves)
-        console.log(PokeNames)
     }
 
     const getFlavorText = async (id) => {
         const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
         const myJson = await result.json()
         setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
-        console.log('pokeFlavorText: ', pokeFlavorText)
     }
 
    return(
@@ -55,8 +55,10 @@ export const PokeApi = () => {
                 id='pokeName'
                 placeholder='...type a Pokémon name' 
                 value={pokeName} 
+                list='pokeNames'
                 onChange={(e) => setPokeName(e.target.value)} 
             />
+            <NamesDataList />
         </form>
         <section>
             <h2>{pokeInfo.name ? pokeInfo.name : ''}</h2>
