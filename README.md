@@ -76,7 +76,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 [x] select pokemon name from suggestion list on input
 
-[] make input list dynamic to first letter
+[x] make input list dynamic to first letter
 
 [] create an accordian div that shows the Pokemon's description
 
