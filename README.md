@@ -78,7 +78,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 [x] make input list dynamic to first letter
 
-[] create an accordian div that shows the Pokemon's description
+[x] create an accordian div that shows the Pokemon's description
 
 [x] handle changes in the input after pokeInfo is initially loaded
 

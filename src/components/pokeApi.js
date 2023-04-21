@@ -36,10 +36,14 @@ export const PokeApi = () => {
         setPokeMoves(four.map(num => myJson.moves[num].move.name))
     }
 
-    const getFlavorText = async (id) => {
-        const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
-        const myJson = await result.json()
-        setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
+    const getFlavorText = async () => {
+        if (pokeFlavorText.length > 1) {
+            setPokeFlavorText('')
+        } else {
+            const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
+            const myJson = await result.json()
+            setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
+        }
     }
 
    return(
@@ -67,7 +71,7 @@ export const PokeApi = () => {
             {pokeInfo.name ? <img id='pokeId' src={pokeImg} /> : <></>}
         </section>
         <section>
-            {pokeInfo.name ? <button onClick={getFlavorText}>For more information about {pokeInfo.name} click here!</button> : <></>}
+            {pokeInfo.name ? <button onClick={getFlavorText}>{pokeFlavorText.length === 0 ? `For more information about ${pokeInfo.name} click here!` : 'Learned enough?'}</button> : <></>}
             {pokeInfo.name && pokeFlavorText ? <p>{pokeFlavorText}</p> : <></>}
         </section>
     </div>
