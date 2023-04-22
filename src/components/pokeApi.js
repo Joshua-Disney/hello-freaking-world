@@ -10,6 +10,7 @@ export const PokeApi = () => {
     const [pokeImg, setPokeImg] = useState('')
     const [pokeMoves, setPokeMoves] = useState([])
     const [pokeFlavorText, setPokeFlavorText] = useState('')
+    const [flavorToggle, setFlavorToggle] = useState(false)
 
     const getFour = (arr) => {
         console.log('arr: ', arr)
@@ -34,15 +35,21 @@ export const PokeApi = () => {
         setPokeImg(myJson.sprites.front_default)
         const four = getFour(myJson.moves)
         setPokeMoves(four.map(num => myJson.moves[num].move.name))
+        setFlavorToggle(false)
+        setPokeFlavorText('')
     }
 
     const getFlavorText = async () => {
         if (pokeFlavorText.length > 1) {
             setPokeFlavorText('')
+            setFlavorToggle(false)
+            console.log('turning off')
         } else {
             const result = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeInfo.id}/`)
             const myJson = await result.json()
             setPokeFlavorText(myJson.flavor_text_entries[1].flavor_text)
+            setFlavorToggle(true)
+            console.log('turning on')
         }
     }
 
@@ -72,7 +79,7 @@ export const PokeApi = () => {
         </section>
         <section>
             {pokeInfo.name ? <button onClick={getFlavorText}>{pokeFlavorText.length === 0 ? `For more information about ${pokeInfo.name} click here!` : 'Learned enough?'}</button> : <></>}
-            {pokeInfo.name && pokeFlavorText ? <p>{pokeFlavorText}</p> : <></>}
+            {flavorToggle ? <p>{pokeFlavorText.length > 0 ? pokeFlavorText : `Unfortunately, there isn't very much information about ${pokeInfo.name} yet`}</p> : <></>}
         </section>
     </div>
    )
