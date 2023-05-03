@@ -10,3 +10,11 @@
 * Created PlayerController C# script 
 * Assigned script to Fun Bus object
 * Unable to currently push from learning-unity repo
+
+
+05/02/2023
+
+* Wrote first line of code in C#
+* Added update method to drive Fun Bus forward 20 meters per second
+* Cloned obstacle and spread out across the road
+* Added physics and weight in kilograms to Fun Bus and obstacles
