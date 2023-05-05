@@ -18,3 +18,10 @@
 * Added update method to drive Fun Bus forward 20 meters per second
 * Cloned obstacle and spread out across the road
 * Added physics and weight in kilograms to Fun Bus and obstacles
+
+
+05/04/2023
+
+* Created first C# Variable
+* Learned different variable data types
+* Camera is able to follow bus via modifiers 
