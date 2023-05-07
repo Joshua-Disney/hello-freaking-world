@@ -25,3 +25,10 @@
 * Created first C# Variable
 * Learned different variable data types
 * Camera is able to follow bus via modifiers 
+
+
+05/06/2023
+
+* Added input control
+* Added left and right movement
+* Added forward and backward movement
