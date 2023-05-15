@@ -39,3 +39,10 @@
 * changed input variables from public to private
 * reorganized hierarchy
 * Complete Bus Project
+
+
+05/14/2023
+
+* Watched introduction video
+* Download starter files
+* Init project
