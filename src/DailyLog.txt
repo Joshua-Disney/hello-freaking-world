@@ -46,3 +46,8 @@
 * Watched introduction video
 * Download starter files
 * Init project
+
+
+05/16/2023
+
+* Download and install latest version of Unity
