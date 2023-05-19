@@ -58,3 +58,11 @@
 * I didn't do anything today.  I had a visit from very good friends out of state and I played video games.  I could have
 and should have written code but I didn't.  I have been slacking this past week.  This lull ends tomorrow.  Not merging 
 this so I only have 1 contribution today.
+
+
+05/18/2023
+
+* Unable to get assets to load
+* Scrapped project and started over
+* Still unable to get assets to load
+* Existential crisis
