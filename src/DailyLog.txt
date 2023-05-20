@@ -66,3 +66,10 @@ this so I only have 1 contribution today.
 * Scrapped project and started over
 * Still unable to get assets to load
 * Existential crisis
+
+
+05/19/2023
+
+* FINALLY was able to load project from scratch
+* Assests loaded and rendered to screen
+* Project broken (per challenge)
