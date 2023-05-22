@@ -73,3 +73,9 @@ this so I only have 1 contribution today.
 * FINALLY was able to load project from scratch
 * Assests loaded and rendered to screen
 * Project broken (per challenge)
+
+
+05/21/2023
+
+* Plane now goes forward instead of reverse
+* Plane goes at a managable pace
